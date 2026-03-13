@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Briganti di Gravitelli — Classe 3C</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --nero: #1a2a1a;
+      --ocra: #c0392b;
+      --ocra-chiaro: #e8604a;
+      --crema: #eef4f7;
+      --grigio: #6a7a8a;
+      --bianco: #f8fbfd;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--crema);
+      color: var(--nero);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      background-color: #1c3a4a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 2rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(192,57,43,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(168,197,216,0.15) 0%, transparent 50%);
+    }
+
+    .hero-tag {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ocra);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: var(--bianco);
+      line-height: 1.1;
+      position: relative;
+      max-width: 900px;
+    }
+
+    .hero h1 em {
+      color: var(--ocra-chiaro);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.08em;
+      position: relative;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--ocra);
+      margin: 2.5rem auto;
+      position: relative;
+    }
+
+    .hero-book {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 500px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: fadeInUp 2s ease 1s both;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(200,146,42,0.6), transparent);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateX(-50%) translateY(20px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
+
+    /* SEZIONI */
+    section { padding: 5rem 2rem; }
+
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--ocra);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: var(--nero);
+    }
+
+    .section-text {
+      font-size: 1.05rem;
+      color: #3d3626;
+      max-width: 680px;
+      line-height: 1.85;
+    }
+
+    /* INTRO */
+    .intro { background: var(--bianco); }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .intro-quote {
+      border-left: 3px solid var(--ocra);
+      padding-left: 1.5rem;
+      margin-top: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--grigio);
+      line-height: 1.6;
+    }
+
+    .intro-quote cite {
+      display: block;
+      margin-top: 0.8rem;
+      font-style: normal;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ocra);
+    }
+
+    .book-card {
+      background: #1c3a4a;
+      color: var(--bianco);
+      padding: 2.5rem;
+      border-radius: 2px;
+    }
+
+    .book-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+      color: var(--ocra-chiaro);
+    }
+
+    .book-card .autrice {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.2rem;
+    }
+
+    .book-card p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+    }
+
+    /* MAPPA */
+    .mappa-section { background: var(--crema); }
+
+    .map-sublabel {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--grigio);
+      margin-bottom: 0.6rem;
+    }
+
+    .map-frame {
+      width: 100%;
+      height: 420px;
+      border: 1px solid #d4c9b0;
+      display: block;
+    }
+
+    .map-img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      margin-top: 2rem;
+      border: 1px solid #d4c9b0;
+      filter: contrast(1.05);
+    }
+
+    .map-caption {
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      color: var(--grigio);
+      letter-spacing: 0.05em;
+    }
+
+    /* GALLERY */
+    .gallery-section { background: var(--bianco); }
+
+    .gallery-intro {
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .photo-card {
+      background: var(--crema);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(26,18,8,0.15);
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, #c5d8e4 0%, #a8c5d8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #8a7d65;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(26,18,8,0.08));
+    }
+
+    .photo-placeholder svg {
+      width: 36px;
+      height: 36px;
+      opacity: 0.5;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-num {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      background: var(--ocra);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.55rem;
+      z-index: 1;
+    }
+
+    .photo-body {
+      padding: 1.2rem 1.4rem 1.4rem;
+    }
+
+    .photo-body h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--nero);
+    }
+
+    .photo-body p {
+      font-size: 0.88rem;
+      color: var(--grigio);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    .photo-body .alunno {
+      margin-top: 0.7rem;
+      font-style: normal;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ocra);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,18,8,0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox-inner {
+      max-width: 800px;
+      width: 100%;
+      position: relative;
+    }
+
+    .lightbox img {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-placeholder {
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(135deg, #1c3a4a 0%, #0f2030 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .lightbox-caption {
+      margin-top: 1.2rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .lightbox-caption h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .lightbox-caption p {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--ocra);
+      font-size: 1.5rem;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.1em;
+    }
+
+    /* CONNESSIONE */
+    .connection-section {
+      background: #1c3a2a;
+      color: var(--bianco);
+    }
+
+    .connection-section .section-title { color: var(--bianco); }
+
+    .connections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .conn-card {
+      border: 1px solid rgba(200,146,42,0.3);
+      padding: 1.8rem;
+      position: relative;
+    }
+
+    .conn-card::before {
+      content: attr(data-num);
+      position: absolute;
+      top: -0.8rem;
+      left: 1.5rem;
+      background: var(--ocra);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.2rem 0.6rem;
+    }
+
+    .conn-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--ocra-chiaro);
+      margin-bottom: 0.6rem;
+    }
+
+    .conn-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1c3a2a;
+      border-top: 1px solid rgba(200,146,42,0.2);
+      padding: 2rem;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+
+    footer span { color: var(--ocra); }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-tag">Istituto Comprensivo Paino · Messina · </p>
+  <h1>I Briganti di <em>Gravitelli</em></h1>
+  <p class="hero-sub">Classe 3C · Anno scolastico 2025/2026</p>
+  <div class="hero-divider"></div>
+  <p class="hero-book">Un viaggio fotografico nel quartiere, ispirato a<br><em>"I Briganti di Librino"</em> di Sara Rattaro</p>
+  <div class="scroll-hint">Scorri</div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div>
+        <p class="section-label">Il quartiere</p>
+        <h2 class="section-title">Gravitelli, una storia da raccontare</h2>
+        <p class="section-text">
+          Gravitelli è un quartiere collinare di Messina, sospeso tra il mare e il verde dei Peloritani. 
+          Come Librino nel romanzo di Sara Rattaro, è un luogo che porta i segni del tempo, fatto di strade strette, 
+          palazzi popolari e scorci inaspettati. Un quartiere che ha una sua anima — spesso invisibile a chi non lo conosce — 
+          e che noi abbiamo scelto di raccontare attraverso gli occhi e la macchina fotografica.
+        </p>
+        <blockquote class="intro-quote">
+          "I luoghi parlano a chi sa ascoltarli. Ogni muro, ogni vicolo, ogni sguardo è una pagina di storia."
+          <cite>— Classe 3C IC Paino</cite>
+        </blockquote>
+      </div>
+      <div>
+        <div class="book-card">
+          <h3>I Briganti di Librino</h3>
+          <p class="autrice">Sara Rattaro</p>
+          <p>
+            Il romanzo racconta la storia di ragazzi che vivono a Librino, quartiere difficile di Catania, 
+            e della loro lotta quotidiana per costruire un futuro diverso. Un libro che parla di identità, 
+            appartenenza e riscatto.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- STORIA -->
+<section style="background: var(--bianco); padding: 5rem 2rem;">
+  <div class="container">
+    <p class="section-label">Radici e memoria</p>
+    <h2 class="section-title">Da Portalegni a Gravitelli: una storia lunga secoli</h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start;">
+      <div>
+        <p class="section-text">
+          Prima di chiamarsi Gravitelli, questo territorio era noto come <strong>Portalegni</strong> — nome che richiama una porta della cinta muraria medievale attraverso cui i cittadini esercitavano il diritto di raccogliere legna nei boschi della collina. Lungo lo stesso percorso scorreva la fiumara omonima, le cui acque raggiungevano il porto della città.
+        </p>
+        <p class="section-text" style="margin-top:1.2rem;">
+          Il nome <em>Gravitelli</em> deriva invece dall'antico eremo della <strong>Madonna delle Gravidelle</strong>, venerato dalle donne in gravidanza fin dal Seicento. Come scriveva nel 1644 il padre gesuita Placido Samperi, le donne messinesi "nelle loro gravidanze, ò nella difficoltà de' loro parti, haveano singolar ricorso à questa Sacra Imagine". Il toponimo si è trasformato nel tempo fino alla forma attuale.
+        </p>
+        <p class="section-text" style="margin-top:1.2rem;">
+          Fino al <strong>terremoto del 1908</strong> Gravitelli era una zona agricola collinare. Dopo il sisma, i terreni lungo la fiumara coperta furono adibiti a baracche per gli sfollati. Nel dopoguerra le baracche lasciarono il posto alle case popolari, e il quartiere assunse la forma che vediamo ancora oggi.
+        </p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div style="border-left:3px solid var(--ocra); padding-left:1.4rem;">
+          <h4 style="font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:0.5rem; color:var(--nero);">Il Castellaccio</h4>
+          <p style="font-size:0.92rem; color:#3d3626; line-height:1.75;">
+            A vegliare su Gravitelli dall'alto, a 150 metri sul livello del mare, sorge il <strong>Forte Castellaccio</strong> — la più antica struttura fortificata di Messina. Le sue origini si perdono nel periodo preellenico; ricostruito nel XVI secolo per volere di Carlo V dall'architetto bergamasco Antonio Ferramolino, fu per secoli simbolo del potere militare della città. Nel 1674 i messinesi lo conquistarono durante la rivolta antispagnola. Poi venne il terremoto del 1908, poi la guerra — e poi l'abbandono.
+          </p>
+        </div>
+
+        <div style="border-left:3px solid var(--ocra); padding-left:1.4rem;">
+          <h4 style="font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:0.5rem; color:var(--nero);">La Città del Ragazzo</h4>
+          <p style="font-size:0.92rem; color:#3d3626; line-height:1.75;">
+            Nel 1949 il Castellaccio tornò a vivere grazie a <strong>Padre Nino Trovato</strong>, sacerdote messinese che lo trasformò in "Villa Pia", poi ribattezzata <em>Città del Ragazzo</em>: un luogo di accoglienza per orfani e ragazzi in difficoltà, che qui trovarono una casa, un lavoro, una comunità. 
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card PNRR -->
+    <div style="margin-top:3rem; background:#1c3a4a; color:white; padding:2.5rem; border-radius:2px; display:grid; grid-template-columns:auto 1fr; gap:2rem; align-items:center;">
+      <div style="font-size:3rem; line-height:1;">🏗️</div>
+      <div>
+        <p style="font-size:0.68rem; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; color:var(--ocra-chiaro); margin-bottom:0.6rem;">Oggi — Rigenerazione urbana</p>
+        <h4 style="font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:0.7rem; color:white;">Il Castellaccio torna alla città grazie al PNRR</h4>
+        <p style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.75;">
+          Nel novembre 2025 l'Agenzia del Demanio ha concesso gratuitamente il Forte Castellaccio alla Città Metropolitana di Messina per quindici anni. Il progetto di rigenerazione — finanziato con <strong style="color:var(--ocra-chiaro);">oltre 55 milioni di euro</strong> attraverso i Piani Urbani Integrati del PNRR — prevede il restauro della fortezza e la sua trasformazione in un polo culturale e giovanile chiamato ancora una volta <em>La Città del Ragazzo</em>: musei, mostre, spazi per la formazione e la creatività. Il quartiere di Gravitelli, con le sue aree verdi e gli impianti sportivi, sarà parte integrante di questo riscatto urbano.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPPA -->
+<section class="mappa-section">
+  <div class="container">
+    <p class="section-label">Il territorio</p>
+    <h2 class="section-title">Gravitelli sulla mappa</h2>
+
+    <p class="map-sublabel">Vista satellite</p>
+    <iframe
+      class="map-frame"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1500!2d15.5435!3d38.2045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sit!2sit!4v1699000000000!5m2!1sit!2sit"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Mappa satellite di Gravitelli, Messina">
+    </iframe>
+    <p class="map-caption">Vista dall'alto del quartiere Gravitelli, Messina.</p>
+
+    <p class="map-sublabel" style="margin-top:2.5rem">Carta topografica storica</p>
+    <img
+      class="map-img"
+      src="mappa-gravitelli.jpg"
+      alt="Mappa topografica del quartiere Gravitelli, Messina"
+    />
+    <p class="map-caption">Carta topografica di Gravitelli con i punti di interesse del percorso fotografico: Forte Castellaccio, Panorama sullo Stretto, Chiesa di S.M. Consolazione, Case e Cortili, Torrente Portalegni, Orto Botanico, Via Pietro Castelli.</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="container">
+    <p class="section-label">Le nostre fotografie</p>
+    <h2 class="section-title">Il quartiere attraverso i nostri occhi</h2>
+    <div class="gallery-intro">
+      <p class="section-text">
+    
+        Uno sguardo giovane su un quartiere antico.
+      </p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Le schede foto vengono generate da JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- CONNESSIONE CON IL LIBRO -->
+<section class="connection-section">
+  <div class="container">
+    <p class="section-label">Lettura e territorio</p>
+    <h2 class="section-title">Cosa ci ha insegnato il libro</h2>
+    <p class="section-text" style="color:rgba(255,255,255,0.65);">
+      Leggere "I Briganti di Librino" ci ha dato nuovi occhi per guardare Gravitelli. 
+      Ecco i temi del romanzo che abbiamo ritrovato nel nostro quartiere.
+    </p>
+    <div class="connections-grid">
+      <div class="conn-card" data-num="01">
+        <h4>Identità e appartenenza</h4>
+        <p>Come i protagonisti di Librino, anche noi apparteniamo a un luogo preciso. Le strade di Gravitelli fanno parte di chi siamo.</p>
+      </div>
+      <div class="conn-card" data-num="02">
+        <h4>I segni del tempo</h4>
+        <p>Muri scrostati, scale consumate, palazzi antichi: ogni quartiere porta i segni della sua storia.</p>
+      </div>
+      <div class="conn-card" data-num="03">
+        <h4>La comunità</h4>
+        <p>Nel romanzo la forza nasce dal gruppo. A Gravitelli le persone che si conoscono, si aiutano, condividono spazi.</p>
+      </div>
+      <div class="conn-card" data-num="04">
+        <h4>Il riscatto possibile</h4>
+        <p>Sara Rattaro racconta che cambiare è possibile. Le nostre foto cercano di mostrare anche la bellezza nascosta del quartiere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <span>I Briganti di Gravitelli</span> · Classe 3C · IC Paino  Messina · 2025/2026
+  </p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner" id="lightboxInner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ chiudi</button>
+    <div id="lightboxContent"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  // DATI DELLE FOTO
+  // Per inserire le foto reali, sostituisci "src: null" con il
+  // percorso del file immagine, es: src: "foto1.jpg"
+  // ============================================================
+  const photos = [
+    { num: 1, src: "foto1.jpg", title: "La piazza dei colori",
+      didascalia: "La piazzetta di Gravitelli è stata riqualificata dal nostro Istituto. Giochi antichi e una scritta sul muretto: \"Alzati Sicilia\". Abbiamo trasformato quest'angolo di quartiere in un messaggio. Come i briganti di Librino, anche qui qualcuno ha scelto di non stare in silenzio." },
+    { num: 2, src: "foto2.jpg", title: "Gravitelli comanda",
+      didascalia: "Sul muro scrostato, tra cuori e nomi, una scritta domina su tutto: \"Gravitelli comanda\". È il modo in cui chi cresce qui rivendica il proprio posto nel mondo. Anche i ragazzi di Librino, nel romanzo, avevano bisogno di dire: noi esistiamo." },
+    { num: 3, src: "foto3.jpg", title: "L'Orto Botanico",
+      didascalia: "L'Orto Botanico, edificato nel 1683 e intitolato al suo fondatore Pietro Castelli, ospita più di 12.000 specie vegetali, tra cui il Limonium sibthorpianum, a rischio di estinzione." },
+    { num: 4, src: "foto4.jpg", title: "I cortili di Gravitelli",
+      didascalia: "Magliette verdi stese ad asciugare in un cortile interno. La vita del quartiere scorre nei suoi spazi nascosti, tra un palazzo e l'altro, lontana dalla strada. Come nel romanzo, sono i luoghi privati a custodire la vera anima di un quartiere." },
+    { num: 5, src: "foto5.jpg", title: "Il furgoncino dell'ortolano",
+      didascalia: "Banane, arance, carciofi, pomodori. Il furgoncino dell'ortolano porta i colori del mercato fin sotto casa. Sullo sfondo, la collina con i suoi palazzi. È una scena antica, che si ripete ogni mattina come un rito del quartiere." },
+    { num: 6, src: "foto6.jpg", title: "La città verticale",
+      didascalia: "Palazzi sovrapposti sulla collina, uno sopra l'altro, come strati di storia. Gravitelli cresce in verticale, aggrappato al pendio. Anche nelle case più alte qualcuno si affaccia, stende i panni, guarda giù. La vita è dappertutto." },
+    { num: 7, src: "foto7.jpg", title: "Il marciapiede spezzato",
+      didascalia: "Le radici degli alberi hanno sollevato le mattonelle, spaccato il cemento. La natura si riprende lo spazio. È un'immagine che parla di abbandono, ma anche di forza silenziosa — quella stessa forza che i protagonisti del libro trovano dentro di sé." },
+    { num: 8, src: "foto8.jpg", title: "Il vicolo dei simboli",
+      didascalia: "Un vicolo stretto, scale che salgono, e due simboli rossi sui muri. Qualcuno ha lasciato un segno. I luoghi abitati sono pieni di messaggi che aspettano di essere letti. Basta imparare a guardare — e questo sopralluogo ce lo ha insegnato." },
+    { num: 9, src: "foto9.jpg", title: "La vecchia chiesa",
+      didascalia: "L'interno della vecchia chiesa di Gravitelli di Santa Maria della Consolazione, posta in un vicolo di via Pietro Castelli." },
+    { num: 10, src: "foto10.jpg", title: "La nuova chiesa",
+      didascalia: "La nuova chiesa di Santa Maria della Consolazione, che riprende la pianta a navata unica della chiesa storica." },
+    { num: 11, src: "foto11.jpg", title: "Cantiere di rinascita",
+      didascalia: "Un edificio in rovina, le reti arancioni del cantiere, e sullo sfondo il costone verde della collina. È l'immagine del cambiamento in corso: grazie ai fondi del PNRR, Gravitelli si prepara a una nuova stagione. Come i briganti di Librino, anche questo quartiere sta scegliendo il riscatto." },
+    { num: 12, src: "foto12.jpg", title: "Polo didattico Interfacoltà",
+      didascalia: "L'Aulario dell'Università di Messina accoglie corsi di laurea, attività di ricerca e eventi accademici." },
+    { num: 13, src: "foto13.jpg", title: "San Pio",
+      didascalia: "La devozione a San Pio è molto forte. Si dice che la sua presenza sia annunziata dal profumo di rose o di viole." },
+    { num: 14, src: "foto14.jpg", title: "Santa Maria delle Grazie",
+      didascalia: "Il culto della Madonna delle Grazie ha radici antichissime. Il simulacro ligneo, donato nel 1919, rappresenta la Madonna che tiene tra le braccia il Bambin Gesù." },
+    { num: 15, src: "foto15.jpg", title: "Pala-Russello",
+      didascalia: "Il centro sportivo ospita le attività di alcune squadre di basket, che devono fare i conti con un sistema di illuminazione problematico e una manutenzione che non viene fatta da 20 anni." },
+    { num: 16, src: "foto16.jpg", title: "Scuola Media Paino",
+      didascalia: "Questa è la nostra scuola, ristrutturata e inaugurata proprio quest'anno, simbolo di rinascita e di futuro." },
+    { num: 17, src: "foto17.jpg", title: "Azzurra e Gabriella",
+      didascalia: "Queste sono le nostre prof. che ci hanno accompagnato lungo il nostro percorso fotografico." },
+    { num: 18, src: "foto18.jpg", title: "I Briganti di Gravitelli",
+      didascalia: "E infine ci siamo noi: i briganti di Gravitelli, pirati dal cuore grande!" },
+  ];
+
+  // Genera le schede nella gallery
+  const grid = document.getElementById('galleryGrid');
+  photos.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    card.onclick = () => openLightbox(i);
+
+    const imgHTML = p.src
+      ? `<img src="${p.src}" alt="${p.title}" loading="lazy"/>`
+      : `<div class="photo-placeholder">
+           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+             <rect x="3" y="3" width="18" height="18" rx="2"/>
+             <circle cx="8.5" cy="8.5" r="1.5"/>
+             <polyline points="21 15 16 10 5 21"/>
+           </svg>
+           <span>Foto ${p.num}</span>
+         </div>`;
+
+    card.innerHTML = `
+      <div class="photo-num">№ ${String(p.num).padStart(2,'0')}</div>
+      ${imgHTML}
+      <div class="photo-body">
+        <h4>${p.title}</h4>
+        <p>${p.didascalia}</p>
+        ${p.alunno ? `<p class="alunno">${p.alunno}</p>` : ''}
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  // Lightbox
+  function openLightbox(i) {
+    const p = photos[i];
+    const lb = document.getElementById('lightbox');
+    const content = document.getElementById('lightboxContent');
+    const caption = document.getElementById('lightboxCaption');
+
+    content.innerHTML = p.src
+      ? `<img src="${p.src}" alt="${p.title}"/>`
+      : `<div class="lightbox-placeholder">
+           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+             <rect x="3" y="3" width="18" height="18" rx="2"/>
+             <circle cx="8.5" cy="8.5" r="1.5"/>
+             <polyline points="21 15 16 10 5 21"/>
+           </svg>
+           <span style="font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase">Foto ${p.num} — in arrivo</span>
+         </div>`;
+
+    caption.innerHTML = `
+      <h4>${p.title}</h4>
+      <p>${p.didascalia}</p>
+      ${p.alunno ? `<p style="margin-top:0.5rem;font-style:normal;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ocra)">${p.alunno}</p>` : ''}`;
+
+    lb.classList.add('active');
+  }
+
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+  }
+
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
